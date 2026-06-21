@@ -41,7 +41,7 @@ export default function LandingHero() {
           transition={{ duration: 0.8, delay: 0.15 }}
           className="text-shadow-hero mt-4 text-5xl font-bold leading-[0.95] text-sand-50 sm:text-7xl md:text-8xl"
         >
-          Wild by Nature
+          Find Your Wild
         </motion.h1>
 
         <motion.p
@@ -50,8 +50,8 @@ export default function LandingHero() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="text-shadow-hero mt-5 max-w-xl text-lg text-sand-100 sm:text-xl"
         >
-          Sixty-three protected wonders. One interactive map. Find the wild that's
-          calling you.
+          Sixty-three protected wonders. One interactive map. Go find the one
+          that's calling you.
         </motion.p>
 
         {/* Stat line */}
