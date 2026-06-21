@@ -40,8 +40,20 @@ export const mapPoints: MapPoint[] = [
     state: "California",
     coordinates: { lat: 37.8651, lng: -119.5383 },
     tagline: "Granite cathedrals and thundering falls.",
-    thumb: thumb("1516233758813-a38d024919c5"),
+    thumb:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg/960px-Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg",
     tags: ["Mountain", "Waterfalls", "Stargazing", "Forest"],
+    built: true,
+  },
+  {
+    slug: "petrified-forest",
+    name: "Petrified Forest",
+    state: "Arizona",
+    coordinates: { lat: 34.91, lng: -109.8068 },
+    tagline: "A rainbow desert of 225-million-year-old stone trees.",
+    thumb:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Old_Bridge_in_Painted_Desert-_Petrified_Forest_National_Park_%2816589902487%29.jpg/960px-Old_Bridge_in_Painted_Desert-_Petrified_Forest_National_Park_%2816589902487%29.jpg",
+    tags: ["Desert", "Stargazing"],
     built: true,
   },
   {

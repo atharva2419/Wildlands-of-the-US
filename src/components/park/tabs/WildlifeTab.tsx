@@ -56,6 +56,11 @@ export default function WildlifeTab({ park }: Props) {
                 <p className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-canyon-600">
                   <Clock className="h-3.5 w-3.5" /> Best: {animal.bestSeason}
                 </p>
+                {animal.imageCredit && (
+                  <p className="mt-2 text-[10px] text-pine-400">
+                    📷 {animal.imageCredit}
+                  </p>
+                )}
               </div>
             </motion.article>
           ))}

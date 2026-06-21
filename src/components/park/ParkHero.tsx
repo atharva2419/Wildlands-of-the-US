@@ -70,6 +70,12 @@ export default function ParkHero({ park }: ParkHeroProps) {
         </motion.div>
       </motion.div>
 
+      {park.heroCredit && (
+        <span className="absolute bottom-2 right-3 z-10 text-[10px] text-sand-100/50">
+          📷 {park.heroCredit}
+        </span>
+      )}
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

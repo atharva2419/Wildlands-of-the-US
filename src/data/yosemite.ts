@@ -1,8 +1,5 @@
 import type { Park } from "@/types/park";
 
-const u = (id: string, w = 1600) =>
-  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`;
-
 export const yosemite: Park = {
   slug: "yosemite",
   name: "Yosemite",
@@ -11,7 +8,9 @@ export const yosemite: Park = {
   tagline: "Granite cathedrals, thundering falls, and a thousand-year silence.",
   established: "October 1, 1890",
   themeColor: "#3f6b44",
-  heroImage: u("1516233758813-a38d024919c5", 2400),
+  heroImage:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg/3840px-Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg",
+  heroCredit: "Diliff · CC BY-SA 3.0 · Wikimedia Commons",
   tags: ["Mountain", "Waterfalls", "Stargazing", "Rock Climbing", "Old Growth"],
 
   stats: [
@@ -80,7 +79,9 @@ export const yosemite: Park = {
       blurb:
         "Yosemite's black bears are often cinnamon-brown, not black. Roughly 300–500 roam the park; you'll most likely spot one foraging in meadows at dawn or dusk.",
       bestSeason: "Spring–Fall",
-      image: u("1589656966895-2f33e7653819", 800),
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/American_black_bear_%28Ursus_americanus%29_-_Jasper_National_Park_04.jpg/960px-American_black_bear_%28Ursus_americanus%29_-_Jasper_National_Park_04.jpg",
+      imageCredit: "Thomas Fuhrmann · CC BY-SA 4.0 · Wikimedia Commons",
     },
     {
       name: "Mule Deer",
@@ -89,7 +90,9 @@ export const yosemite: Park = {
       blurb:
         "Named for their large, mule-like ears. The most commonly seen large mammal, grazing the valley meadows in early morning and evening.",
       bestSeason: "Year-round",
-      image: u("1484406566174-9da000fda645", 800),
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Odocoileus_hemionus_%28Calibas%29.jpg/960px-Odocoileus_hemionus_%28Calibas%29.jpg",
+      imageCredit: "Calibas · CC BY-SA 3.0 · Wikimedia Commons",
     },
     {
       name: "Sierra Nevada Bighorn Sheep",
@@ -98,7 +101,9 @@ export const yosemite: Park = {
       blurb:
         "One of the rarest mammals in North America. Reintroduced to the park's high country, fewer than 600 survive in the entire Sierra Nevada.",
       bestSeason: "Summer (high country)",
-      image: u("1551316679-9c6ae9dec224", 800),
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Sierra_Nevada_bighorn_sheep_herd.jpg/960px-Sierra_Nevada_bighorn_sheep_herd.jpg",
+      imageCredit: "CA Dept. of Fish & Game · CC BY 2.0 · Wikimedia Commons",
     },
     {
       name: "Peregrine Falcon",
@@ -107,7 +112,9 @@ export const yosemite: Park = {
       blurb:
         "The fastest animal on Earth, diving at over 200 mph. Nests on Yosemite's cliff faces — climbing routes are sometimes closed to protect them.",
       bestSeason: "Spring–Summer",
-      image: u("1552728089-57bdde30beb3", 800),
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Peregrine_falcon_%28Falco_peregrinus%29_in_flight%2C_Cape_Baily%2C_Kamay_Botany_Bay_NSW_Jun_2022.jpg/960px-Peregrine_falcon_%28Falco_peregrinus%29_in_flight%2C_Cape_Baily%2C_Kamay_Botany_Bay_NSW_Jun_2022.jpg",
+      imageCredit: "Kytabu · CC BY-SA 4.0 · Wikimedia Commons",
     },
     {
       name: "Bobcat",
@@ -116,7 +123,9 @@ export const yosemite: Park = {
       blurb:
         "Elusive and mostly solitary, bobcats hunt rodents and rabbits across the valley. Lucky visitors glimpse one slipping through meadow grass at dusk.",
       bestSeason: "Year-round",
-      image: u("1605904033296-c5b1f0a4e8d1", 800),
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Lynx_rufus_-_Zoo_Sauvage_de_Saint-F%C3%A9licien_-_2016-07-19.jpg/960px-Lynx_rufus_-_Zoo_Sauvage_de_Saint-F%C3%A9licien_-_2016-07-19.jpg",
+      imageCredit: "Letartean · CC BY 3.0 · Wikimedia Commons",
     },
     {
       name: "Great Gray Owl",
@@ -125,7 +134,9 @@ export const yosemite: Park = {
       blurb:
         "North America's tallest owl. Yosemite hosts a genetically distinct population — perhaps only 200–300 birds — found in mountain meadows.",
       bestSeason: "Spring–Fall",
-      image: u("1543549790-8b5f4a028cfb", 800),
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Strix_nebulosa_%28Chouette_lapone%29_-_393.jpg/960px-Strix_nebulosa_%28Chouette_lapone%29_-_393.jpg",
+      imageCredit: "William Crochot · CC BY-SA 4.0 · Wikimedia Commons",
     },
   ],
 
@@ -232,13 +243,50 @@ export const yosemite: Park = {
   },
 
   gallery: [
-    { src: u("1516233758813-a38d024919c5"), alt: "Granite cliffs of Yosemite Valley at dusk", credit: "Unsplash" },
-    { src: u("1433086966358-54859d0ed716"), alt: "A long waterfall cascading down a forested cliff", credit: "Unsplash" },
-    { src: u("1469474968028-56623f02e42e"), alt: "Sun breaking over a forested mountain range", credit: "Unsplash" },
-    { src: u("1426604966848-d7adac402bff"), alt: "A wide green valley framed by mountains", credit: "Unsplash" },
-    { src: u("1506905925346-21bda4d32df4"), alt: "Alpine lake reflecting snowy peaks", credit: "Unsplash" },
-    { src: u("1470071459604-3b5ec3a7fe05"), alt: "Mist drifting through an evergreen forest", credit: "Unsplash" },
-    { src: u("1441974231531-c6227db76b6e"), alt: "Sunlight filtering through tall forest trees", credit: "Unsplash" },
-    { src: u("1454496522488-7a8e488e8606"), alt: "Starry night sky above mountain silhouettes", credit: "Unsplash" },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Half_Dome_with_Eastern_Yosemite_Valley.jpg/1920px-Half_Dome_with_Eastern_Yosemite_Valley.jpg",
+      alt: "Half Dome rising above Yosemite Valley",
+      credit: "Thomas Wolf · CC BY-SA 3.0 · Wikimedia Commons",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Valley_View_Yosemite_August_2013_002.jpg/1920px-Valley_View_Yosemite_August_2013_002.jpg",
+      alt: "El Capitan towering over Valley View",
+      credit: "King of Hearts · CC BY-SA 3.0 · Wikimedia Commons",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Upper_Yosemite_fall_with_reflection_1.jpg/1920px-Upper_Yosemite_fall_with_reflection_1.jpg",
+      alt: "Yosemite Falls plunging down the cliff",
+      credit: "Brocken Inaglory · CC BY-SA 3.0 · Wikimedia Commons",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Yosemite_National_Park_%28CA%2C_USA%29%2C_Yosemite_Valley%2C_Mirror_Lake_--_2022_--_2807.jpg/1920px-Yosemite_National_Park_%28CA%2C_USA%29%2C_Yosemite_Valley%2C_Mirror_Lake_--_2022_--_2807.jpg",
+      alt: "Mirror Lake reflecting the valley walls",
+      credit: "Dietmar Rabich · CC BY-SA 4.0 · Wikimedia Commons",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Panoramic_Overview_from_Glacier_Point_over_Yosemite_Valley_2013_Alternative.jpg/1920px-Panoramic_Overview_from_Glacier_Point_over_Yosemite_Valley_2013_Alternative.jpg",
+      alt: "The view from Glacier Point over the valley",
+      credit: "Tuxyso · CC BY-SA 3.0 · Wikimedia Commons",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Yosemite_National_Park_%28CA%2C_USA%29%2C_Mariposa_Grove_of_Giant_Sequoias%2C_Grizzly_Giant_--_2022_--_2752.jpg/1920px-Yosemite_National_Park_%28CA%2C_USA%29%2C_Mariposa_Grove_of_Giant_Sequoias%2C_Grizzly_Giant_--_2022_--_2752.jpg",
+      alt: "The Grizzly Giant sequoia in the Mariposa Grove",
+      credit: "Dietmar Rabich · CC BY-SA 4.0 · Wikimedia Commons",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Yosemite-tuolumne_meadows_1.jpeg",
+      alt: "Open high country at Tuolumne Meadows",
+      credit: "Moppet65535 · CC BY-SA 3.0 · Wikimedia Commons",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Yosemite_National_Park%2C_Bridalveil_Fall%2C_2024-07_CN-01.jpg/1920px-Yosemite_National_Park%2C_Bridalveil_Fall%2C_2024-07_CN-01.jpg",
+      alt: "Bridalveil Fall in Yosemite Valley",
+      credit: "Steffen Schmitz · CC BY-SA 4.0 · Wikimedia Commons",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Vernal_Fall%2C_Yosemite_NP%2C_CA%2C_US_-_Diliff.jpg/1920px-Vernal_Fall%2C_Yosemite_NP%2C_CA%2C_US_-_Diliff.jpg",
+      alt: "Vernal Fall on the Mist Trail",
+      credit: "Diliff · CC BY-SA 3.0 · Wikimedia Commons",
+    },
   ],
 };

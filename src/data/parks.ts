@@ -1,8 +1,9 @@
 import type { Park } from "@/types/park";
 import { yosemite } from "./yosemite";
+import { petrifiedForest } from "./petrified-forest";
 
 /** All parks currently in the site. Add marquee parks here as we build them. */
-export const parks: Park[] = [yosemite];
+export const parks: Park[] = [yosemite, petrifiedForest];
 
 export const getParkBySlug = (slug: string): Park | undefined =>
   parks.find((p) => p.slug === slug);

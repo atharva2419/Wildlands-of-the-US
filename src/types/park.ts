@@ -35,6 +35,8 @@ export interface Animal {
   blurb: string;
   bestSeason: string;
   image: string;
+  /** Photo attribution (e.g. for CC-licensed images). */
+  imageCredit?: string;
 }
 
 export interface SafetyNote {
@@ -96,6 +98,8 @@ export interface Park {
   /** Earthy accent color (hex) that themes this park's page. */
   themeColor: string;
   heroImage: string;
+  /** Photo attribution for the hero image. */
+  heroCredit?: string;
   /** Filter tags, e.g. ["Mountain", "Waterfalls", "Stargazing"]. */
   tags: string[];
 
