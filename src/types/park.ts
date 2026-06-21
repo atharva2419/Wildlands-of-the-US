@@ -57,6 +57,35 @@ export interface Trail {
   highlight: string;
   /** Sampled elevation profile (ft) used to draw the sparkline. */
   elevationProfile: number[];
+  /** Optional explicit AllTrails URL; otherwise a search link is generated. */
+  alltrailsUrl?: string;
+}
+
+export type CampType =
+  | "Tent & RV"
+  | "Tent only"
+  | "RV"
+  | "Group"
+  | "Walk-in"
+  | "Backcountry";
+
+export type CampBooking = "Reservation" | "First-come" | "Permit" | "Lottery";
+
+export interface Campsite {
+  name: string;
+  type: CampType;
+  /** e.g. "238 sites" or "Permit only". */
+  sites: string;
+  booking: CampBooking;
+  /** e.g. "Year-round" or "Apr–Oct". */
+  season: string;
+  fee: string;
+  /** Area within the park, e.g. "Yosemite Valley". */
+  location: string;
+  elevation?: string;
+  highlight: string;
+  /** Reservation/permit link (e.g. recreation.gov). */
+  reserveUrl?: string;
 }
 
 export interface MonthInfo {
@@ -113,6 +142,10 @@ export interface Park {
   safetyNotes: SafetyNote[];
 
   trails: Trail[];
+  /** Optional — omit (or leave empty) for parks with no camping. */
+  camping?: Campsite[];
+  /** Optional intro/caveat for the camping tab (e.g. "no developed campgrounds"). */
+  campingNote?: string;
   bestTime: MonthInfo[];
   gettingThere: GettingThere;
   gallery: GalleryImage[];

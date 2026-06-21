@@ -57,12 +57,24 @@ export const mapPoints: MapPoint[] = [
     built: true,
   },
   {
+    slug: "saguaro",
+    name: "Saguaro",
+    state: "Arizona",
+    coordinates: { lat: 32.2967, lng: -111.1666 },
+    tagline: "A forest of giant cacti guarding the Sonoran Desert.",
+    thumb:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Saguaro_National_Park_East%2C_Arizona%2C_USA_2024_5.jpg/960px-Saguaro_National_Park_East%2C_Arizona%2C_USA_2024_5.jpg",
+    tags: ["Desert", "Stargazing"],
+    built: true,
+  },
+  {
     slug: "yellowstone",
     name: "Yellowstone",
     state: "Wyoming",
     coordinates: { lat: 44.428, lng: -110.5885 },
     tagline: "Geysers, hot springs, and roaming bison.",
-    thumb: thumb("1533423996375-f914a8f0e1e0"),
+    thumb:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Yellowstone_National_Park_%28WY%2C_USA%29%2C_Grand_Prismatic_Spring_--_2022_--_2514.jpg/960px-Yellowstone_National_Park_%28WY%2C_USA%29%2C_Grand_Prismatic_Spring_--_2022_--_2514.jpg",
     tags: ["Mountain", "Volcanic", "Forest", "Stargazing"],
   },
   {
@@ -71,8 +83,10 @@ export const mapPoints: MapPoint[] = [
     state: "Arizona",
     coordinates: { lat: 36.1069, lng: -112.1129 },
     tagline: "A mile-deep chasm a billion years in the making.",
-    thumb: thumb("1474044159687-1ee9f3a51722"),
+    thumb:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Grand_Canyon_South_Rim_at_Sunset.jpg/960px-Grand_Canyon_South_Rim_at_Sunset.jpg",
     tags: ["Canyon", "Desert", "Stargazing"],
+    built: true,
   },
   {
     slug: "zion",

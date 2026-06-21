@@ -224,6 +224,49 @@ export const petrifiedForest: Park = {
     },
   ],
 
+  campingNote:
+    "Petrified Forest has no developed or drive-in campgrounds. The only way to sleep inside the park is free backcountry camping in the wilderness — and because the park road is gated at night, you must hike in before closing. For RVs and tent sites with hookups, head to private campgrounds in Holbrook, about 30 minutes west.",
+  camping: [
+    {
+      name: "Painted Desert Wilderness",
+      type: "Backcountry",
+      sites: "Permit only (free)",
+      booking: "Permit",
+      season: "Year-round",
+      fee: "Free",
+      location: "Painted Desert Wilderness Area",
+      elevation: "5,400 ft",
+      highlight:
+        "The park's only in-park overnight option. Pick up a free permit at a visitor center, hike at least a mile past the access trail, and camp under some of Arizona's darkest skies.",
+      reserveUrl:
+        "https://www.nps.gov/pefo/planyourvisit/wilderness-hiking.htm",
+    },
+    {
+      name: "OK RV Park / Holbrook KOA",
+      type: "Tent & RV",
+      sites: "Full hookups",
+      booking: "Reservation",
+      season: "Year-round",
+      fee: "From ~$35 / night",
+      location: "Holbrook, AZ (~30 min west)",
+      highlight:
+        "The nearest developed camping, with RV hookups, showers, and tent sites — a practical base if you want amenities.",
+      reserveUrl: "https://www.recreation.gov/search?q=Holbrook+Arizona+camping",
+    },
+    {
+      name: "Homolovi State Park",
+      type: "Tent & RV",
+      sites: "53 sites",
+      booking: "Reservation",
+      season: "Year-round",
+      fee: "From ~$25 / night",
+      location: "Winslow, AZ (~50 min west)",
+      highlight:
+        "An Arizona state park with hookups and its own ancestral Hopi pueblo sites — a scenic alternative within easy reach.",
+      reserveUrl: "https://azstateparks.com/homolovi",
+    },
+  ],
+
   bestTime: [
     { month: "Jan", crowd: "low", highTempF: 47, lowTempF: 21, note: "Crisp, quiet days; occasional snow dusts the badlands." },
     { month: "Feb", crowd: "low", highTempF: 53, lowTempF: 25, note: "Cold mornings, mild afternoons, very few visitors." },

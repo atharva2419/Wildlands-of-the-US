@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Line, LineChart, ResponsiveContainer } from "recharts";
-import { ArrowUpDown, Dog, Mountain, Ruler, Timer } from "lucide-react";
+import { ArrowUpDown, Dog, ExternalLink, Mountain, Ruler, Timer } from "lucide-react";
 import type { Park, Trail, TrailDifficulty } from "@/types/park";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Badge from "@/components/ui/Badge";
@@ -13,6 +13,27 @@ interface Props {
 type SortKey = "name" | "difficulty" | "distanceMi" | "elevationGainFt";
 
 const DIFFICULTIES: TrailDifficulty[] = ["easy", "moderate", "hard", "strenuous"];
+
+/** Deep-link to an AllTrails search for this trail (reliable without trail IDs). */
+const alltrailsLink = (trail: Trail, parkName: string) =>
+  trail.alltrailsUrl ??
+  `https://www.alltrails.com/search?q=${encodeURIComponent(
+    `${trail.name} ${parkName}`,
+  )}`;
+
+function AllTrailsLink({ href }: { href: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={(e) => e.stopPropagation()}
+      className="inline-flex items-center gap-1 text-xs font-semibold text-canyon-600 underline-offset-2 hover:underline"
+    >
+      AllTrails <ExternalLink className="h-3 w-3" />
+    </a>
+  );
+}
 
 function Sparkline({ data, color }: { data: number[]; color: string }) {
   const points = data.map((ft, i) => ({ i, ft }));
@@ -132,6 +153,9 @@ export default function TrailsTab({ park }: Props) {
                   <div className="mt-0.5 max-w-md text-xs text-pine-600">
                     {trail.highlight}
                   </div>
+                  <div className="mt-1.5">
+                    <AllTrailsLink href={alltrailsLink(trail, park.name)} />
+                  </div>
                 </td>
                 <td className="px-5 py-4">
                   <Badge className={difficultyClass[trail.difficulty]}>
@@ -162,14 +186,27 @@ export default function TrailsTab({ park }: Props) {
       {/* Mobile cards */}
       <div className="space-y-4 md:hidden">
         {trails.map((trail) => (
-          <TrailCard key={trail.name} trail={trail} color={park.themeColor} />
+          <TrailCard
+            key={trail.name}
+            trail={trail}
+            color={park.themeColor}
+            parkName={park.name}
+          />
         ))}
       </div>
     </div>
   );
 }
 
-function TrailCard({ trail, color }: { trail: Trail; color: string }) {
+function TrailCard({
+  trail,
+  color,
+  parkName,
+}: {
+  trail: Trail;
+  color: string;
+  parkName: string;
+}) {
   return (
     <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-pine-100">
       <div className="flex items-start justify-between gap-3">
@@ -196,8 +233,9 @@ function TrailCard({ trail, color }: { trail: Trail; color: string }) {
           </span>
         )}
       </div>
-      <div className="mt-3">
+      <div className="mt-3 flex items-end justify-between">
         <Sparkline data={trail.elevationProfile} color={color} />
+        <AllTrailsLink href={alltrailsLink(trail, parkName)} />
       </div>
     </div>
   );

@@ -208,6 +208,87 @@ export const yosemite: Park = {
     },
   ],
 
+  camping: [
+    {
+      name: "Upper Pines",
+      type: "Tent & RV",
+      sites: "238 sites",
+      booking: "Reservation",
+      season: "Year-round",
+      fee: "$36 / night",
+      location: "Yosemite Valley",
+      elevation: "4,000 ft",
+      highlight:
+        "The largest valley campground and the easiest base for Half Dome and the Mist Trail. Books out months ahead.",
+      reserveUrl: "https://www.recreation.gov/search?q=Upper+Pines+Yosemite",
+    },
+    {
+      name: "Lower Pines",
+      type: "Tent & RV",
+      sites: "60 sites",
+      booking: "Reservation",
+      season: "Apr–Oct",
+      fee: "$36 / night",
+      location: "Yosemite Valley",
+      elevation: "4,000 ft",
+      highlight:
+        "A smaller valley loop along the Merced River, with classic views up to Half Dome.",
+      reserveUrl: "https://www.recreation.gov/search?q=Lower+Pines+Yosemite",
+    },
+    {
+      name: "North Pines",
+      type: "Tent & RV",
+      sites: "81 sites",
+      booking: "Reservation",
+      season: "Apr–Sep",
+      fee: "$36 / night",
+      location: "Yosemite Valley",
+      elevation: "4,000 ft",
+      highlight:
+        "Tucked between the Merced and Tenaya creeks — quieter, and close to the Mirror Lake trail.",
+      reserveUrl: "https://www.recreation.gov/search?q=North+Pines+Yosemite",
+    },
+    {
+      name: "Camp 4",
+      type: "Walk-in",
+      sites: "35 shared sites",
+      booking: "Lottery",
+      season: "Year-round",
+      fee: "$10 / person",
+      location: "Yosemite Valley",
+      elevation: "4,000 ft",
+      highlight:
+        "The legendary, tent-only climbers' camp — birthplace of big-wall climbing and now on the National Register. Peak-season daily lottery.",
+      reserveUrl: "https://www.recreation.gov/search?q=Camp+4+Yosemite",
+    },
+    {
+      name: "Tuolumne Meadows",
+      type: "Tent & RV",
+      sites: "304 sites",
+      booking: "Reservation",
+      season: "Jul–Sep",
+      fee: "$36 / night",
+      location: "Tuolumne Meadows (high country)",
+      elevation: "8,600 ft",
+      highlight:
+        "The park's biggest campground, set in the alpine high country off Tioga Road — cool nights and incredible stars.",
+      reserveUrl: "https://www.recreation.gov/search?q=Tuolumne+Meadows+Yosemite",
+    },
+    {
+      name: "Wawona",
+      type: "Tent & RV",
+      sites: "99 sites",
+      booking: "Reservation",
+      season: "Year-round",
+      fee: "$36 / night",
+      location: "Wawona (south)",
+      elevation: "4,000 ft",
+      highlight:
+        "Near the Mariposa Grove of giant sequoias and the historic Wawona Hotel, away from valley crowds.",
+      reserveUrl: "https://www.recreation.gov/search?q=Wawona+Yosemite",
+    },
+  ],
+
   bestTime: [
     { month: "Jan", crowd: "low", highTempF: 49, lowTempF: 28, note: "Snow-dusted valley, fewest crowds. Tioga Rd closed." },
     { month: "Feb", crowd: "moderate", highTempF: 55, lowTempF: 30, note: "Possible 'Firefall' on Horsetail Fall at sunset." },
