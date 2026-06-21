@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Wildlands design tokens — a warm, WPA-poster-inspired national-park palette.
+   --------------------------------------------------------------------------- */
+@theme {
+  --color-pine-50: #f1f6f1;
+  --color-pine-100: #dce8dc;
+  --color-pine-200: #b9d1ba;
+  --color-pine-300: #8eb290;
+  --color-pine-400: #5e8a62;
+  --color-pine-500: #3f6b44;
+  --color-pine-600: #2f5435;
+  --color-pine-700: #26422b;
+  --color-pine-800: #1f3524;
+  --color-pine-900: #16261a;
+  --color-pine-950: #0b150e;
+
+  --color-canyon-50: #fdf4ed;
+  --color-canyon-100: #f9e2cf;
+  --color-canyon-200: #f1c19c;
+  --color-canyon-300: #e89a64;
+  --color-canyon-400: #e07a3c;
+  --color-canyon-500: #d35f23;
+  --color-canyon-600: #b9481a;
+  --color-canyon-700: #973619;
+  --color-canyon-800: #7a2d1a;
+  --color-canyon-900: #642718;
+
+  --color-sand-50: #faf6ef;
+  --color-sand-100: #f1e7d5;
+  --color-sand-200: #e4d1ad;
+
+  --color-sky-dawn: #e8a86b;
+  --color-sky-dusk: #6b4e8c;
+
+  --font-display: "Oswald", "Arial Narrow", sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-sand-50 text-pine-950 font-body antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display uppercase tracking-wide;
+  }
+
+  ::selection {
+    @apply bg-canyon-400 text-sand-50;
+  }
+}
+
+@layer utilities {
+  /* Respect users who prefer reduced motion. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  .text-shadow-hero {
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
+  }
+}

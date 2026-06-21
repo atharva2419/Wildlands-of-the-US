@@ -1,0 +1,173 @@
+/**
+ * Lightweight pin data for the interactive U.S. map. Every marquee park gets a
+ * geographically accurate point here; only those with a full data file (and
+ * `built: true`) route to a complete park page — the rest show "coming soon."
+ */
+
+export interface MapPoint {
+  slug: string;
+  name: string;
+  state: string;
+  /** Real coordinates, projected through geoAlbersUsa on the map. */
+  coordinates: { lat: number; lng: number };
+  tagline: string;
+  thumb: string;
+  /** Filter categories — must overlap with FILTER_TAGS below. */
+  tags: string[];
+  /** True once a full <ParkPage /> data file exists. */
+  built?: boolean;
+}
+
+const thumb = (id: string) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=640&q=80`;
+
+/** The chips shown above the map. Keep in sync with point tags. */
+export const FILTER_TAGS = [
+  "Mountain",
+  "Waterfalls",
+  "Desert",
+  "Canyon",
+  "Coastal",
+  "Volcanic",
+  "Forest",
+  "Stargazing",
+] as const;
+
+export const mapPoints: MapPoint[] = [
+  {
+    slug: "yosemite",
+    name: "Yosemite",
+    state: "California",
+    coordinates: { lat: 37.8651, lng: -119.5383 },
+    tagline: "Granite cathedrals and thundering falls.",
+    thumb: thumb("1516233758813-a38d024919c5"),
+    tags: ["Mountain", "Waterfalls", "Stargazing", "Forest"],
+    built: true,
+  },
+  {
+    slug: "yellowstone",
+    name: "Yellowstone",
+    state: "Wyoming",
+    coordinates: { lat: 44.428, lng: -110.5885 },
+    tagline: "Geysers, hot springs, and roaming bison.",
+    thumb: thumb("1533423996375-f914a8f0e1e0"),
+    tags: ["Mountain", "Volcanic", "Forest", "Stargazing"],
+  },
+  {
+    slug: "grand-canyon",
+    name: "Grand Canyon",
+    state: "Arizona",
+    coordinates: { lat: 36.1069, lng: -112.1129 },
+    tagline: "A mile-deep chasm a billion years in the making.",
+    thumb: thumb("1474044159687-1ee9f3a51722"),
+    tags: ["Canyon", "Desert", "Stargazing"],
+  },
+  {
+    slug: "zion",
+    name: "Zion",
+    state: "Utah",
+    coordinates: { lat: 37.2982, lng: -113.0263 },
+    tagline: "Crimson cliffs and slot-canyon narrows.",
+    thumb: thumb("1542401886-65d6c61db217"),
+    tags: ["Canyon", "Desert", "Mountain"],
+  },
+  {
+    slug: "arches",
+    name: "Arches",
+    state: "Utah",
+    coordinates: { lat: 38.7331, lng: -109.5925 },
+    tagline: "Over 2,000 natural stone arches.",
+    thumb: thumb("1546156929-a4c0ac411f47"),
+    tags: ["Desert", "Canyon", "Stargazing"],
+  },
+  {
+    slug: "grand-teton",
+    name: "Grand Teton",
+    state: "Wyoming",
+    coordinates: { lat: 43.7904, lng: -110.6818 },
+    tagline: "Jagged peaks rising straight from the valley.",
+    thumb: thumb("1605469330960-e0a35e58e8c2"),
+    tags: ["Mountain", "Forest", "Stargazing"],
+  },
+  {
+    slug: "glacier",
+    name: "Glacier",
+    state: "Montana",
+    coordinates: { lat: 48.7596, lng: -113.787 },
+    tagline: "Alpine lakes and the Going-to-the-Sun Road.",
+    thumb: thumb("1556881286-fc6915169721"),
+    tags: ["Mountain", "Waterfalls", "Forest"],
+  },
+  {
+    slug: "rocky-mountain",
+    name: "Rocky Mountain",
+    state: "Colorado",
+    coordinates: { lat: 40.3428, lng: -105.6836 },
+    tagline: "Tundra, elk, and peaks above 14,000 feet.",
+    thumb: thumb("1486870591958-9b9d0d1dda99"),
+    tags: ["Mountain", "Forest", "Stargazing"],
+  },
+  {
+    slug: "olympic",
+    name: "Olympic",
+    state: "Washington",
+    coordinates: { lat: 47.8021, lng: -123.6044 },
+    tagline: "Rainforest, glaciers, and wild coastline.",
+    thumb: thumb("1501785888041-af3ef285b470"),
+    tags: ["Coastal", "Forest", "Mountain", "Waterfalls"],
+  },
+  {
+    slug: "acadia",
+    name: "Acadia",
+    state: "Maine",
+    coordinates: { lat: 44.3386, lng: -68.2733 },
+    tagline: "Where the Atlantic meets granite shores.",
+    thumb: thumb("1507692049790-de58290a4334"),
+    tags: ["Coastal", "Forest", "Mountain"],
+  },
+  {
+    slug: "great-smoky-mountains",
+    name: "Great Smoky Mountains",
+    state: "Tennessee",
+    coordinates: { lat: 35.6118, lng: -83.4895 },
+    tagline: "Misty ridgelines and the most-visited park.",
+    thumb: thumb("1465311440653-ba9b1d9b0f5b"),
+    tags: ["Mountain", "Forest", "Waterfalls"],
+  },
+  {
+    slug: "joshua-tree",
+    name: "Joshua Tree",
+    state: "California",
+    coordinates: { lat: 33.8734, lng: -115.901 },
+    tagline: "Twisted trees under some of the darkest skies.",
+    thumb: thumb("1551582045-6ec9c11d8697"),
+    tags: ["Desert", "Stargazing"],
+  },
+  {
+    slug: "denali",
+    name: "Denali",
+    state: "Alaska",
+    coordinates: { lat: 63.1148, lng: -151.1926 },
+    tagline: "North America's highest peak and vast tundra.",
+    thumb: thumb("1518803194621-27188ba362c9"),
+    tags: ["Mountain", "Forest", "Stargazing"],
+  },
+  {
+    slug: "hawaii-volcanoes",
+    name: "Hawaiʻi Volcanoes",
+    state: "Hawaii",
+    coordinates: { lat: 19.4194, lng: -155.2885 },
+    tagline: "Active volcanoes and glowing lava lakes.",
+    thumb: thumb("1559825481-12a05cc00344"),
+    tags: ["Volcanic", "Coastal"],
+  },
+  {
+    slug: "everglades",
+    name: "Everglades",
+    state: "Florida",
+    coordinates: { lat: 25.2866, lng: -80.8987 },
+    tagline: "A slow river of grass teeming with life.",
+    thumb: thumb("1535909339361-7c8d2d3f3a3c"),
+    tags: ["Coastal", "Forest"],
+  },
+];
