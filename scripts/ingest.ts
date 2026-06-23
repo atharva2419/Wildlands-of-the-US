@@ -121,6 +121,25 @@ function buildChunks(park: Park): Chunk[] {
   return out;
 }
 
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+/** Embed a batch, retrying with backoff when Voyage rate-limits (429). */
+async function embedWithRetry(texts: string[], attempts = 6): Promise<number[][]> {
+  for (let n = 0; n < attempts; n++) {
+    try {
+      return await embed(texts, "document");
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      const isRateLimit = msg.includes("429");
+      if (!isRateLimit || n === attempts - 1) throw e;
+      const wait = 22_000 + n * 8_000; // free tier is 3 req/min — wait it out
+      console.log(`  ⏳ rate-limited; retrying in ${wait / 1000}s…`);
+      await sleep(wait);
+    }
+  }
+  throw new Error("unreachable");
+}
+
 async function main() {
   const SUPABASE_URL = process.env.SUPABASE_URL;
   const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -134,15 +153,13 @@ async function main() {
   const chunks = parks.flatMap(buildChunks);
   console.log(`Built ${chunks.length} chunks from ${parks.length} parks.`);
 
-  // Embed in batches (Voyage accepts up to 128 inputs per call).
-  const BATCH = 100;
+  // Small batches keep each request under Voyage's free-tier 10K tokens/min cap;
+  // embedWithRetry backs off and retries on 429 so it works even when throttled.
+  const BATCH = 20;
   const rows: (Chunk & { embedding: number[] })[] = [];
   for (let i = 0; i < chunks.length; i += BATCH) {
     const batch = chunks.slice(i, i + BATCH);
-    const vectors = await embed(
-      batch.map((c) => c.content),
-      "document",
-    );
+    const vectors = await embedWithRetry(batch.map((c) => c.content));
     batch.forEach((c, j) => rows.push({ ...c, embedding: vectors[j] }));
     console.log(`Embedded ${Math.min(i + BATCH, chunks.length)}/${chunks.length}`);
   }
