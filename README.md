@@ -1,11 +1,37 @@
 # Wildlands — U.S. National Parks
 
-An interactive, visually rich guide to the U.S. National Parks: a cinematic
-landing page with a geographically accurate map of the country, and deep,
-data-driven pages for each park. Built as a full-stack-leaning front-end
-portfolio project.
+A full-stack, AI-powered guide to the U.S. National Parks: a cinematic landing
+page with a geographically accurate interactive map, deep data-driven pages for
+each park, and a retrieval-augmented (RAG) **"Ask a Ranger"** chatbot that
+answers questions with cited, hallucination-resistant responses.
+
+**🔗 Live demo: [find-your-wild.vercel.app](https://find-your-wild.vercel.app/)**
+
+## Screenshots
+
+**Interactive U.S. map — every pin at its real coordinates**
+
+![Wildlands interactive map](docs/screenshots/landing-map.png)
+
+**"Ask a Ranger" — a RAG chatbot grounded in real park data, with citations**
+
+![Ask a Ranger RAG chatbot](docs/screenshots/ranger-chat.png)
 
 ## Features
+
+### 🤖 "Ask a Ranger" — RAG assistant
+A retrieval-augmented chatbot that answers natural-language questions about the
+parks and **grounds every answer in real data with inline citations**:
+
+- Park data is chunked and embedded with **Voyage AI** (`voyage-3`).
+- Embeddings live in **Supabase Postgres + pgvector** (HNSW index, cosine search).
+- At query time the question is embedded, the most relevant chunks are retrieved,
+  and **Claude (Haiku 4.5)** answers using those chunks as cited source documents.
+- Responses **stream token-by-token** over Server-Sent Events; citation chips
+  link back to the relevant park page.
+- Runs on **Vercel serverless functions** with all secrets kept server-side.
+
+See [docs/ai-setup.md](docs/ai-setup.md) for the full architecture and setup.
 
 ### Landing page
 - **Cinematic hero** with parallax scroll, an animated headline, and count-up stats.
@@ -13,10 +39,8 @@ portfolio project.
   projection) with **geographically accurate pins** — Alaska & Hawaii included
   via insets. Hover for a live preview; click to open a park.
 - **Filter chips** (Mountain, Canyon, Desert, Coastal, Stargazing, …) that
-  dim non-matching pins.
-- **State abbreviation labels** placed at each state's centroid.
+  dim non-matching pins, plus state-abbreviation labels at each centroid.
 - Map gracefully collapses to a **searchable card grid** on mobile.
-- A featured-parks grid and a closing "legacy" stats band.
 
 ### Park pages
 Every park is rendered from a single typed `Park` object, so the template
@@ -42,43 +66,57 @@ scales to any park. Each page includes:
 
 ## Parks included
 
-Fully built: **Yosemite**, **Grand Canyon**, **Saguaro**, **Petrified Forest**.
-Additional marquee parks appear on the map as pins and join the site as their
-data files are added.
+Fully built: **Yosemite**, **Grand Canyon**, **Saguaro**, **Petrified Forest**,
+**Joshua Tree**. Additional marquee parks appear on the map as pins and join the
+site as their data files are added.
 
 ## Tech Stack
 
+**Frontend**
 - **React 18 + TypeScript** (Vite)
-- **Tailwind CSS v4** for styling
+- **Tailwind CSS v4** for styling, **Framer Motion** for animation
 - **React Router** for routing + code splitting
-- **react-simple-maps / d3-geo** + `us-atlas` for the map
-- **Framer Motion** for animation
-- **Recharts** for data viz
-- **lucide-react** for icons
+- **react-simple-maps / d3-geo** + `us-atlas` for the map, **Recharts** for charts
+
+**Backend / AI**
+- **Node serverless functions** on **Vercel** (`/api`)
+- **Anthropic Claude** (Haiku 4.5) — RAG generation with Citations + SSE streaming
+- **Voyage AI** embeddings (`voyage-3`)
+- **Supabase Postgres + pgvector** — vector store (HNSW, cosine similarity)
+
+**Infra**
+- **Vercel** — CDN, serverless, CI/CD auto-deploys from GitHub
 
 ## Getting Started
 
 ```bash
 npm install
-npm run dev      # start the dev server
+npm run dev      # Vite dev server (frontend only — /api is not served here)
 npm run build    # type-check + production build
-npm run preview  # preview the production build
+vercel dev       # run the app AND the /api functions locally (reads .env.local)
 ```
+
+The AI features need API keys and a Supabase database — see
+[docs/ai-setup.md](docs/ai-setup.md). The map and park pages work without them.
 
 ## Project Structure
 
 ```
+api/                       # Vercel serverless functions
+  chat.ts                  #   RAG "Ask a Ranger" (SSE streaming + citations)
+  search.ts                #   semantic park search
+lib/voyage.ts              # Voyage embeddings client (shared)
+scripts/
+  ingest.ts                # corpus → embeddings → Supabase (npm run ingest)
+  fetch-images.mjs         # sources openly-licensed images from Wikimedia Commons
+supabase/schema.sql        # pgvector table + index + match function
 src/
   types/park.ts            # the Park + Campsite data contract
   data/                    # one file per park + registry + map-pin data
-  lib/                     # label/color maps, state abbreviations
   components/
-    ui/                    # SmartImage, Badge, Lightbox, CountUp, …
-    landing/               # Navbar, hero, ParkMap, MapSection, FeaturedParks
-    park/                  # ParkHero, StatStrip, ParkTabs
-      tabs/                # the tab panels (Overview, Wildlife, Trails, …)
+    ranger/RangerChat.tsx  # the chat widget
+    landing/ park/ ui/      # map, hero, tabs, primitives
   pages/                   # Landing, ParkPage, ParkRoute, NotFound
-scripts/fetch-images.mjs   # pulls openly-licensed images from Wikimedia Commons
 ```
 
 ## Adding a Park
@@ -88,20 +126,16 @@ scripts/fetch-images.mjs   # pulls openly-licensed images from Wikimedia Commons
 2. Create `src/data/<slug>.ts` exporting a `Park` object.
 3. Register it in `src/data/parks.ts`, and add/flip its pin in
    `src/data/mapPoints.ts` (`built: true`).
+4. Run `npm run ingest` so the "Ask a Ranger" assistant knows about the new park.
 
 `<ParkPage />` renders everything else.
 
 ## Roadmap
 
+- [ ] Wire semantic search into the map (natural-language → highlighted pins)
 - [ ] More marquee parks (data files for the existing map pins)
 - [ ] "Compare two parks" side-by-side view
-- [ ] "Find my park" quiz
 - [ ] Live weather via Open-Meteo
-
-## Notes
-
-- Deploying to a static host (e.g. GitHub Pages) needs an SPA fallback so deep
-  links like `/parks/yosemite` resolve, or switch to `HashRouter`.
 
 > Data and imagery are for demonstration only. Plan real trips at
 > [nps.gov](https://www.nps.gov).
