@@ -5,25 +5,23 @@
  *
  * Embeds the query, runs a pgvector similarity search, and aggregates the best
  * matching chunks up to the park level so the map can highlight pins.
+ *
+ * Node.js serverless runtime (the Anthropic-free sibling of /api/chat).
  */
+import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { createClient } from "@supabase/supabase-js";
 import { embedOne } from "../lib/voyage.js";
 
-// Default Node.js serverless runtime (no Edge config).
-
-export default async function handler(req: Request): Promise<Response> {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
-    return json({ error: "Method not allowed" }, 405);
+    res.status(405).json({ error: "Method not allowed" });
+    return;
   }
 
-  let query = "";
-  try {
-    ({ query } = await req.json());
-  } catch {
-    return json({ error: "Invalid JSON body" }, 400);
-  }
+  const query = (req.body?.query ?? "") as string;
   if (!query || typeof query !== "string") {
-    return json({ error: "Missing 'query'" }, 400);
+    res.status(400).json({ error: "Missing 'query'" });
+    return;
   }
 
   const supabase = createClient(
@@ -61,9 +59,9 @@ export default async function handler(req: Request): Promise<Response> {
       .sort((a, b) => b.score - a.score)
       .slice(0, 6);
 
-    return json({ results });
+    res.status(200).json({ results });
   } catch (e) {
-    return json({ error: errMessage(e) }, 500);
+    res.status(500).json({ error: errMessage(e) });
   }
 }
 
@@ -72,13 +70,6 @@ interface ChunkMatch {
   park_name: string;
   content: string;
   similarity: number;
-}
-
-function json(body: unknown, status = 200): Response {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { "Content-Type": "application/json" },
-  });
 }
 
 function errMessage(e: unknown): string {
