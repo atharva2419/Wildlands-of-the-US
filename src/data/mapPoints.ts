@@ -166,8 +166,10 @@ export const mapPoints: MapPoint[] = [
     state: "California",
     coordinates: { lat: 33.8734, lng: -115.901 },
     tagline: "Twisted trees under some of the darkest skies.",
-    thumb: thumb("1551582045-6ec9c11d8697"),
+    thumb:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Joshua_Tree_Park_approaching_thunderstorm_02_2013.jpg/960px-Joshua_Tree_Park_approaching_thunderstorm_02_2013.jpg",
     tags: ["Desert", "Stargazing"],
+    built: true,
   },
   {
     slug: "denali",
