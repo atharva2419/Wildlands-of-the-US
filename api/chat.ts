@@ -11,9 +11,11 @@
  */
 import Anthropic from "@anthropic-ai/sdk";
 import { createClient } from "@supabase/supabase-js";
-import { embedOne } from "../lib/voyage";
+import { embedOne } from "../lib/voyage.js";
 
-export const config = { runtime: "edge" };
+// Runs on Vercel's default Node.js serverless runtime (NOT Edge): the Anthropic
+// SDK imports node:fs / node:path, which the Edge runtime doesn't provide.
+// Node serverless still streams the Response body fine.
 
 const MODEL = "claude-haiku-4-5";
 const TOP_K = 8;

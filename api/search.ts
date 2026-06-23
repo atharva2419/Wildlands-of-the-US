@@ -7,9 +7,9 @@
  * matching chunks up to the park level so the map can highlight pins.
  */
 import { createClient } from "@supabase/supabase-js";
-import { embedOne } from "../lib/voyage";
+import { embedOne } from "../lib/voyage.js";
 
-export const config = { runtime: "edge" };
+// Default Node.js serverless runtime (no Edge config).
 
 export default async function handler(req: Request): Promise<Response> {
   if (req.method !== "POST") {
